@@ -1,4 +1,4 @@
-package com.github.lyrric.model;
+package com.github.chenjie.model;
 
 /**
  * 疫苗预约日期可选择的时间段

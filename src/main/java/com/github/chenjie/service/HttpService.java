@@ -1,10 +1,9 @@
-package com.github.lyrric.service;
+package com.github.chenjie.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.lyrric.conf.Config;
-import com.github.lyrric.model.*;
+import com.github.chenjie.conf.ConfigC;
+import com.github.chenjie.model.*;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Created on 2020-07-22.
@@ -73,7 +71,7 @@ public class HttpService {
         param.put("offset", "0");
         param.put("limit", "100");
         //这个应该是成都的行政区划前四位
-        param.put("regionCode", Config.regionCode);
+        param.put("regionCode", ConfigC.regionCode);
         String json = get(path, param, null);
         return JSONObject.parseArray(json).toJavaList(VaccineList.class);
     }
@@ -113,7 +111,7 @@ public class HttpService {
     }
 
     private void hasAvailableConfig() throws BusinessException {
-        if(Config.cookie.isEmpty()){
+        if(ConfigC.cookie.isEmpty()){
             throw new BusinessException("0", "请先配置cookie");
         }
     }
@@ -161,7 +159,7 @@ public class HttpService {
             for (Header responseHeader : responseHeaders) {
                 String cookie = ((BufferedHeader) responseHeader).getBuffer().toString().split(";")[0].split(":")[1].trim();
                 String[] split = cookie.split("=");
-                Config.cookie.put(split[0], cookie);
+                ConfigC.cookie.put(split[0], cookie);
             }
         }
     }
@@ -170,11 +168,11 @@ public class HttpService {
         List<Header> headers = new ArrayList<>();
         headers.add(new BasicHeader("User-Agent", "Mozilla/5.0 (Linux; Android 5.1.1; SM-N960F Build/JLS36C; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 MMWEBID/1042 MicroMessenger/7.0.15.1680(0x27000F34) Process/appbrand0 WeChat/arm32 NetType/WIFI Language/zh_CN ABI/arm32"));
         headers.add(new BasicHeader("Referer", "https://servicewechat.com/wxff8cad2e9bf18719/2/page-frame.html"));
-        headers.add(new BasicHeader("tk", Config.tk));
+        headers.add(new BasicHeader("tk", ConfigC.tk));
         headers.add(new BasicHeader("Accept","application/json, text/plain, */*"));
         headers.add(new BasicHeader("Host","miaomiao.scmttec.com"));
-        if(!Config.cookie.isEmpty()){
-            String cookie = String.join("; ", new ArrayList<>(Config.cookie.values()));
+        if(!ConfigC.cookie.isEmpty()){
+            String cookie = String.join("; ", new ArrayList<>(ConfigC.cookie.values()));
             logger.info("cookie is {}", cookie);
             headers.add(new BasicHeader("Cookie", cookie));
         }
@@ -183,7 +181,7 @@ public class HttpService {
 
     private String eccHs(String seckillId, String st){
         String salt = "ux$ad70*b";
-        final Integer memberId = Config.memberId;
+        final Integer memberId = ConfigC.memberId;
         String md5 = DigestUtils.md5Hex(seckillId + memberId + st);
         return DigestUtils.md5Hex(md5 + salt);
     }

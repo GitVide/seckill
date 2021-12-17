@@ -1,4 +1,4 @@
-package com.github.lyrric.model;
+package com.github.chenjie.model;
 
 /**
  * Created on 2020-07-23.

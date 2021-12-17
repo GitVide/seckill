@@ -1,4 +1,4 @@
-package com.github.lyrric.conf;
+package com.github.chenjie.conf;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author wangxiaodong
  */
-public class Config {
+public class ConfigC {
 
     public static String tk = "";
 

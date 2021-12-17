@@ -1,7 +1,7 @@
-package com.github.lyrric.service;
+package com.github.chenjie.service;
 
-import com.github.lyrric.conf.Config;
-import com.github.lyrric.model.BusinessException;
+import com.github.chenjie.conf.ConfigC;
+import com.github.chenjie.model.BusinessException;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,19 +46,19 @@ public class SecKillRunnable implements Runnable{
                 //获取加密参数st
                 if(resetSt){
                     logger.info("Thread ID：{}，请求获取加密参数st", id);
-                    Config.st = httpService.getSt(vaccineId.toString());
+                    ConfigC.st = httpService.getSt(vaccineId.toString());
                     logger.info("Thread ID：{}，成功获取加密参数st", id);
                 }
                 logger.info("Thread ID：{}，秒杀请求", id);
-                httpService.secKill(vaccineId.toString(), "1", Config.memberId.toString(),
-                        Config.idCard, Config.st);
-                Config.success = true;
+                httpService.secKill(vaccineId.toString(), "1", ConfigC.memberId.toString(),
+                        ConfigC.idCard, ConfigC.st);
+                ConfigC.success = true;
                 logger.info("Thread ID：{}，抢购成功", id);
                 break;
             } catch (BusinessException e) {
                 logger.info("Thread ID: {}, 抢购失败: {}", id, e.getErrMsg());
                 if(e.getErrMsg().contains("没抢到")){
-                    Config.success = false;
+                    ConfigC.success = false;
                     break;
                 }
             } catch (ConnectTimeoutException | SocketTimeoutException socketTimeoutException ){
@@ -67,7 +67,7 @@ public class SecKillRunnable implements Runnable{
                 logger.warn("Thread ID: {}，未知异常", Thread.currentThread().getId());
             }finally {
                 //如果离开始时间10分钟后，或者已经成功抢到则不再继续
-                if (System.currentTimeMillis() > startDate + 1000 * 60 *10 || Config.success != null) {
+                if (System.currentTimeMillis() > startDate + 1000 * 60 *10 || ConfigC.success != null) {
                     break;
                 }
             }

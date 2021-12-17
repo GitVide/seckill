@@ -1,11 +1,11 @@
-package com.github.lyrric.ui;
+package com.github.chenjie.ui;
 
 
-import com.github.lyrric.conf.Config;
-import com.github.lyrric.model.BusinessException;
-import com.github.lyrric.model.Member;
-import com.github.lyrric.model.TableModel;
-import com.github.lyrric.service.HttpService;
+import com.github.chenjie.conf.ConfigC;
+import com.github.chenjie.model.BusinessException;
+import com.github.chenjie.model.Member;
+import com.github.chenjie.model.TableModel;
+import com.github.chenjie.service.HttpService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -86,9 +86,9 @@ public class MemberDialog extends JDialog {
             JOptionPane.showMessageDialog(this, "请选择接种成员","提示", JOptionPane.PLAIN_MESSAGE);
             return ;
         }
-        Config.memberId = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString());
-        Config.idCard = table.getValueAt(table.getSelectedRow(), 2).toString();
-        Config.memberName = table.getValueAt(table.getSelectedRow(), 1).toString();
+        ConfigC.memberId = Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString());
+        ConfigC.idCard = table.getValueAt(table.getSelectedRow(), 2).toString();
+        ConfigC.memberName = table.getValueAt(table.getSelectedRow(), 1).toString();
         success = true;
         this.dispose();
     }

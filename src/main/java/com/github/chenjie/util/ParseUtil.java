@@ -1,12 +1,9 @@
-package com.github.lyrric.util;
+package com.github.chenjie.util;
 
 import com.alibaba.fastjson.JSONArray;
-import com.github.lyrric.conf.Config;
-import com.github.lyrric.model.Area;
-import com.github.lyrric.service.HttpService;
+import com.github.chenjie.model.Area;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

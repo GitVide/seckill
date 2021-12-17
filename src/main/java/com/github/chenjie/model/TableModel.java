@@ -1,6 +1,5 @@
-package com.github.lyrric.model;
+package com.github.chenjie.model;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**

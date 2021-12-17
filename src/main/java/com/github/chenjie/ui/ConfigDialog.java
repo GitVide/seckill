@@ -1,7 +1,7 @@
-package com.github.lyrric.ui;
+package com.github.chenjie.ui;
 
-import com.github.lyrric.conf.Config;
-import com.github.lyrric.util.ParseUtil;
+import com.github.chenjie.conf.ConfigC;
+import com.github.chenjie.util.ParseUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +35,7 @@ public class ConfigDialog extends JDialog {
         this.setTitle("请输入抓包的请求头.....");
         reqHeader = new JTextArea();
         reqHeader.setBounds(20,10,400,200);
-        reqHeader.setText(Config.reqHeader);
+        reqHeader.setText(ConfigC.reqHeader);
 
         JLabel tkLabel = new JLabel("tk：");
         tkLabel.setBounds(10, 230, 60, 25);
@@ -58,8 +58,8 @@ public class ConfigDialog extends JDialog {
             if(cookie.getText().isEmpty() || tk.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "请输入tk和cookie","提示", JOptionPane.PLAIN_MESSAGE);
             }else{
-                Config.reqHeader = reqHeader.getText();
-                Config.tk = tk.getText();
+                ConfigC.reqHeader = reqHeader.getText();
+                ConfigC.tk = tk.getText();
                 calCookie(cookie.getText());
                 success = true;
                 this.dispose();
@@ -94,7 +94,7 @@ public class ConfigDialog extends JDialog {
     private void calCookie(String cookie){
         String[] s = cookie.replaceAll(" ", "").split(";");
         for (String s1 : s) {
-            Config.cookie.put(s1.split("=")[0], s1);
+            ConfigC.cookie.put(s1.split("=")[0], s1);
         }
     }
 }

@@ -1,9 +1,9 @@
-package com.github.lyrric.service;
+package com.github.chenjie.service;
 
-import com.github.lyrric.conf.Config;
-import com.github.lyrric.model.BusinessException;
-import com.github.lyrric.model.VaccineList;
-import com.github.lyrric.ui.MainFrame;
+import com.github.chenjie.conf.ConfigC;
+import com.github.chenjie.model.BusinessException;
+import com.github.chenjie.model.VaccineList;
+import com.github.chenjie.ui.MainFrame;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,8 +52,8 @@ public class SecKillService {
             //提前五秒钟获取服务器时间戳接口，计算加密用
             try {
                 logger.info("Thread ID：main，请求获取加密参数st");
-                Config.st = httpService.getSt(vaccineId.toString());
-                logger.info("Thread ID：main，成功获取加密参数st：{}", Config.st);
+                ConfigC.st = httpService.getSt(vaccineId.toString());
+                logger.info("Thread ID：main，成功获取加密参数st：{}", ConfigC.st);
                 break;
             }catch (ConnectTimeoutException  | SocketTimeoutException socketTimeoutException ){
                 logger.error("Thread ID：main,获取st失败: 超时");
@@ -80,7 +80,7 @@ public class SecKillService {
         //等待线程结束
         try {
             service.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);
-            if (Config.success) {
+            if (ConfigC.success) {
                 if (mainFrame != null) {
                     mainFrame.appendMsg("抢购成功，请登录约苗小程序查看");
                 }

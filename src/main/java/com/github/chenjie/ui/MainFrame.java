@@ -1,13 +1,12 @@
-package com.github.lyrric.ui;
+package com.github.chenjie.ui;
 
-import com.github.lyrric.conf.Config;
-import com.github.lyrric.model.Area;
-import com.github.lyrric.model.BusinessException;
-import com.github.lyrric.model.TableModel;
-import com.github.lyrric.model.VaccineList;
-import com.github.lyrric.service.SecKillService;
-import com.github.lyrric.util.ParseUtil;
-import org.apache.commons.lang3.StringUtils;
+import com.github.chenjie.conf.ConfigC;
+import com.github.chenjie.model.Area;
+import com.github.chenjie.model.BusinessException;
+import com.github.chenjie.model.TableModel;
+import com.github.chenjie.model.VaccineList;
+import com.github.chenjie.service.SecKillService;
+import com.github.chenjie.util.ParseUtil;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -88,7 +87,7 @@ public class MainFrame extends JFrame {
             dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             dialog.setVisible(true);
             if(dialog.success()){
-                appendMsg("已设置成员：" + Config.memberName);
+                appendMsg("已设置成员：" + ConfigC.memberName);
             }
         });
 
@@ -137,7 +136,7 @@ public class MainFrame extends JFrame {
         JButton setAreaBtn = new JButton("确定");
         setAreaBtn.addActionListener(e->{
             Area selectedItem = (Area) cityBox.getSelectedItem();
-            Config.regionCode = selectedItem.getValue();
+            ConfigC.regionCode = selectedItem.getValue();
             appendMsg("已选择地区:"+selectedItem.getName());
         });
         setAreaBtn.setBounds(220, 270, 80, 30);
@@ -188,7 +187,7 @@ public class MainFrame extends JFrame {
         }
     }
     private void start(){
-        if(Config.cookie.isEmpty()){
+        if(ConfigC.cookie.isEmpty()){
             appendMsg("请配置cookie!!!");
             return ;
         }

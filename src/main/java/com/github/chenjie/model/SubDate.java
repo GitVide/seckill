@@ -1,4 +1,4 @@
-package com.github.lyrric.model;
+package com.github.chenjie.model;
 
 /**
  * 预约日期

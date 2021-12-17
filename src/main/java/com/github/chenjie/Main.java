@@ -1,7 +1,7 @@
-package com.github.lyrric;
+package com.github.chenjie;
 
-import com.github.lyrric.ui.ConsoleMode;
-import com.github.lyrric.ui.MainFrame;
+import com.github.chenjie.ui.ConsoleMode;
+import com.github.chenjie.ui.MainFrame;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
